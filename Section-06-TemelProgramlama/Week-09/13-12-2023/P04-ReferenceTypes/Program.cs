@@ -1,5 +1,6 @@
 ﻿namespace P04_ReferenceTypes
-{   static class Product
+{
+    class Product
     {
 
     }

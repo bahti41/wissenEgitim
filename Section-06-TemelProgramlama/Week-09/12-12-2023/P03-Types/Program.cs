@@ -31,27 +31,48 @@
 
             //Console.WriteLine(ushort.MinValue);
             //Console.WriteLine(ushort.MaxValue);
-            //console.WriteLink(sizeof(int)+ "byte");
-            //#endregion
+            //Console.WriteLine(sizeof(ushort)+ "byte");
+
             #endregion
             #region ONDALIKLI SAYILAR
+            //float sayı1 = 56.7f;
+            //double sayı2 = 56.78;
+            //decimal sayı3 = 76.665m;
+
+            //Console.WriteLine(float.MinValue);
+            //Console.WriteLine(float.MaxValue);
+            //Console.WriteLine(sizeof(float)+ "byte");
+            //Console.WriteLine(sayı1.GetType());
+            //Console.WriteLine();
+
+            //Console.WriteLine(double.MinValue);
+            //Console.WriteLine(double.MaxValue);
+            //Console.WriteLine(sizeof(double) + "byte");
+            //Console.WriteLine(sayı2.GetType());
+
+            //Console.WriteLine();
+
+            //Console.WriteLine(decimal.MinValue);
+            //Console.WriteLine(decimal.MaxValue);
+            //Console.WriteLine(sizeof(decimal) + "byte");
+            //Console.WriteLine(sayı3.GetType());
 
             #endregion
             #region METİN VE KARAKTERLER
-            /*char answer = 'T';
-            string name = "ali veli";
+            //char answer = 'T';
+            //string name = "ali veli";
 
-            Console.WriteLine(answer + "tipi" + answer.GetType() + "-min:" + char.MinValue);
-            Console.WriteLine(name[4]);*/
+            //Console.WriteLine(answer + "tipi" + answer.GetType() + "-min:" + char.MinValue);
+            //Console.WriteLine(name[4]);
 
             #endregion
             #region MANTIKSAL
-            bool isActive = true;
-            Console.WriteLine()
+            //bool isActive = true;
+            //Console.WriteLine(isActive);
             #endregion
             #region TARİH SAAT
-            DateTime birthDay = new DateTime(1997, 2, 2);
-            Console.WriteLine(birthDay);
+            //DateTime birthDay = new DateTime(1997, 2, 2);
+            //Console.WriteLine(birthDay);
              #endregion
 
             Console.ReadLine();
