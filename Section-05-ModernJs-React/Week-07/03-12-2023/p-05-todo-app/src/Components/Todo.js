@@ -12,7 +12,7 @@ const Todo = ({ task, toggleComplete, deleteTask, editTodo }) => {
     return (
         <>
             <div className='Todo'>
-                <p onClick={() => { toggleComplete(task.id) }} className={task.completed ? "completed TodoTask" : "TodoTask"}>
+                <p onClick={() => { toggleComplete(task.id) }} className={task.completed ? "Completed TodoTask" : "TodoTask"}>
                     {task.desc}
                 </p>
                 <div className='TodoButtons'>

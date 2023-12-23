@@ -1,9 +1,9 @@
-.Footer{
+﻿.Footer{
     background-color: aqua;
     color: navy;
     padding: 5px;
     text-align: center;
     /* position: absolute;
-    bottom: 0px;
+    bottom:0px;
     width: 100%; */
 }

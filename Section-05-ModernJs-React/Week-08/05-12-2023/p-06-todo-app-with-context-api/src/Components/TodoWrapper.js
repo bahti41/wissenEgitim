@@ -8,7 +8,7 @@ import TodoFilter from './TodoFilter';
 const TodoWrapper = ({ tasks }) => {
     const [taskList, setTaskList] = useState(tasks);
     const [filterMode, setFilterMode] = useState("all");
-
+    
     const addTask = _desc => {
         setTaskList(
             [...taskList, {

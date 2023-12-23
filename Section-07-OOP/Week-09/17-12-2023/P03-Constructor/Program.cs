@@ -8,13 +8,13 @@
         }
         public Student(string name)
         {
-            Age =18;
+            Age = 18;
             Name = name;
-            Console.WriteLine("bir student nesnesi olusturuldu...");
+            Console.WriteLine("Bir student nesnesi oluşturuldu...");
         }
         public Student(int id, string name, bool gender, int age)
         {
-            Id= id;
+            Id = id;
             Name = name;
             Gender = gender;
             Age = age;
@@ -25,7 +25,7 @@
         public bool Gender { get; set; }
         public void SelamVer()
         {
-            Console.WriteLine($"Merhaba. Ben {Name}.{Age} yaşındayım.");
+            Console.WriteLine($"Merhaba. Ben {Name}. {Age} yaşındayım.");
         }
     }
     public class Program
@@ -34,16 +34,15 @@
         {
             //Student student = new Student();
             //student.Id = 1;
-            //student.Name = "bahtiyar";
+            //student.Name = "Melek";
             //student.Gender = true;
-            //student.Age = 26;
+            //student.Age = 22;
             //student.SelamVer();
 
-            //Student student2 = new Student
-            //{
+            //Student student2 = new Student{
             //    Id = 2,
-            //    Name = "bati",
-            //    Age = 26,
+            //    Name = "Çağdaş",
+            //    Age = 28,
             //    Gender = false
             //};
             //student2.SelamVer();
@@ -57,10 +56,9 @@
 
             //Student student4 = new Student("Ece");
             //student4.SelamVer();
-
-            Student student5 = new Student(5,"bahtiyar",false,26);
-            student5.SelamVer(); 
-
+            Student student5= new Student(5,"Baransel",false,26);
+            student5.SelamVer();
+            
             Console.ReadLine();
         }
     }

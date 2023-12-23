@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { TodoContext } from '../Contexts/TodoContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCriticalRole } from '@fortawesome/free-brands-svg-icons';
-import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 const TodoAddForm = () => {
     const context = useContext(TodoContext);
     const [desc, setDesc] = useState("");
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (desc) {
@@ -15,7 +14,7 @@ const TodoAddForm = () => {
             setDesc("");
             e.target.firstChild.firstChild.focus();
         } else {
-            alert("Lütfen bos bırakmayınız!");
+            alert("Lütfen boş bırakmayınız!");
         }
     }
     return (
@@ -25,8 +24,8 @@ const TodoAddForm = () => {
                 <div className="input-group mb-1">
                     <input onChange={(e) => { setDesc(e.target.value) }} value={desc} type="text" className="form-control" placeholder="What is the task today?" aria-describedby="button-addon2" />
                     <button className="btn btn-outline-success" type="submit" id="btn-add-task">
-                        {/* {<FontAwesomeIcon icon={faCirclePlus} size='x1' />} */}
-                        {<FontAwesomeIcon icon={faCirclePlus} className='fs-1' />}
+                        {/* <FontAwesomeIcon icon={faCirclePlus} size='2xl' /> */}
+                        <FontAwesomeIcon icon={faCirclePlus} className='fs-1' />
                     </button>
 
                 </div>

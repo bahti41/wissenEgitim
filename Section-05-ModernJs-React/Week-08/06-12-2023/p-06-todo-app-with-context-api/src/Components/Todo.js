@@ -11,11 +11,11 @@ const Todo = ({ task }) => {
                 : "d-flex justify-content-between align-items-center list-group-item rounded-2 mb-1"}>
                 <div role="button" onClick={() => { context.toggleComplete(task.id) }} className='w-75'>{task.desc}</div>
                 <div>
-                    <button className='btn btn-warning  me-1' onClick={() => { context.toggleEditing(task.id) }}>
-                        {<FontAwesomeIcon icon={faPenToSquare} />}
+                    <button className='btn btn-warning me-1' onClick={() => { context.toggleEditing(task.id) }}>
+                        <FontAwesomeIcon icon={faPenToSquare} />
                     </button>
                     <button className='btn btn-danger' onClick={() => { context.deleteTask(task.id) }}>
-                        {<FontAwesomeIcon icon={faTrashCan} />}
+                        <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                 </div>
             </li>

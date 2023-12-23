@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const TodoEditForm = ({ task, saveTodo }) => {
     const [value, setValue] = useState(task.desc);
@@ -7,22 +7,23 @@ const TodoEditForm = ({ task, saveTodo }) => {
         e.preventDefault();
         saveTodo(task.id, value);
     }
+
     return (
         <>
-            <from onClick={handleSubmit} className="TodoFrom">
-                <input type='text'
+            <form onSubmit={handleSubmit} className='TodoForm'>
+                <input
+                    type="text"
                     value={value}
-                    onChange=
-                    {
+                    onChange={
                         (e) => { setValue(e.target.value) }
                     }
                     className='TodoInput'
-                    placeholder='Update task '
+                    placeholder='Update task'
                 />
                 <button type='submit' className='TodoBtn TodoSaveBtn'>Save</button>
-            </from>
+            </form>
         </>
     )
 }
 
-export default TodoEditForm
+export default TodoEditForm;

@@ -8,8 +8,8 @@ import TodoFilter from './TodoFilter';
 const TodoWrapper = () => {
 
     const [taskList, setTaskList] = useState(
-        localStorage.getItem("todo-app-react") != null ? JSON.parse(localStorage.getItem("todo-app-react")) : []);
-
+        localStorage.getItem("todo-app-react") != null ? JSON.parse(localStorage.getItem("todo-app-react")) : []
+    );
     const [filterMode, setFilterMode] = useState("all");
 
     useEffect(() => {
@@ -18,7 +18,15 @@ const TodoWrapper = () => {
 
     useEffect(() => {
         setLocalStorage();
-    }, [taskList]);
+    }, [taskList])
+
+    const getLocalStorage = () => {
+        let item = localStorage.getItem("todo-app-react");
+        if (item != null) {
+            setTaskList(JSON.parse(item));
+        };
+
+    }
 
     const addTask = _desc => {
         setTaskList(
@@ -35,16 +43,12 @@ const TodoWrapper = () => {
         setTaskList(
             taskList.map(task => task.id === id ? { ...task, isCompleted: !task.isCompleted } : task)
         );
-
-
     }
 
     const deleteTask = id => {
         setTaskList(
             taskList.filter(task => task.id != id)
         );
-
-
     }
 
     const toggleEditing = id => {
@@ -57,26 +61,17 @@ const TodoWrapper = () => {
         setTaskList(
             taskList.map(task => task.id === id ? { ...task, desc: _desc, isEditing: !task.isEditing } : task)
         );
-
-
     }
 
     const clearAll = () => {
         setTaskList([]);
-
-
     }
 
     const setLocalStorage = () => {
         localStorage.setItem("todo-app-react", JSON.stringify(taskList));
     }
 
-    const getLocalStorage = () => {
-        let item = localStorage.getItem("todo-app-react");
-        if (item != null) {
-            setTaskList(JSON.parse(item));
-        };
-    }
+
 
     return (
         <TodoContext.Provider value={{ taskList, addTask, toggleComplete, deleteTask, toggleEditing, updateTask, clearAll, filterMode, setFilterMode }} >

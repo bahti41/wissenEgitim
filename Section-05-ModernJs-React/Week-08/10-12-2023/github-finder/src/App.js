@@ -11,14 +11,14 @@ import Axios from 'axios';
 function App() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
-  const [userRepos, setUserRepos] = useState([]);
+  const [userRepos, setUserRepos] = useState([])
   const [isClearButtonShow, setIsClearButtonShow] = useState(false);
 
-  const token = "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";
+  const token = "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";
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   }
-
+    ;
 
   const searchUsers = (keyword) => {
     Axios
@@ -42,10 +42,9 @@ function App() {
       .then(response => { setUserRepos(response.data) });
   }
 
-
   return (
     <>
-      <AppContext.Provider value={{ users, getUser, user, userRepos, getRepos, searchUsers, setUsers, isClearButtonShow, setIsClearButtonShow }}>
+      <AppContext.Provider value={{ users, getUser, setUser, user, userRepos, getRepos, searchUsers, setUsers, isClearButtonShow, setIsClearButtonShow }}>
         <BrowserRouter>
           <Header />
           <Routes>

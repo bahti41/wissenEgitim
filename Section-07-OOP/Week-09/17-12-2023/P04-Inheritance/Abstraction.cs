@@ -12,7 +12,7 @@
             Console.WriteLine("Merhaba.");
         }
     }
-    public class Category : Base
+    public class Category:Base
     {
         public string Description { get; set; }
 
@@ -21,9 +21,9 @@
             throw new NotImplementedException();
         }
     }
-    public class Product : Base
+    public class Product:Base
     {
-        public string Proparties { get; set; }
+        public string Properties { get; set; }
         public double Price { get; set; }
 
         public override void Intro()
@@ -33,7 +33,7 @@
     }
 
 
-    public class Abstraxtion
+    public class Abstraction
     {
 
     }

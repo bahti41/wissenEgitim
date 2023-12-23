@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
@@ -8,6 +7,7 @@ import Footer from './Pages/Footer/Footer.js';
 import { AppContext } from './Contexts/AppContext.js';
 import { useState } from 'react';
 import { Axios } from 'axios';
+
 function App() {
   const [users, setUsers] = useState([]);
 
@@ -15,17 +15,18 @@ function App() {
     Axios
       .get('https://api.github.com/users')
       .then((response) => {
-        // istegi tamamladıktan sonrad buradaki kodları calıstır
+        // get isteği tamamlandıktan sonra buradaki kodları çalıştır
       })
   }
+
   return (
     <>
       <AppContext.Provider>
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/search' element={<SearchPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

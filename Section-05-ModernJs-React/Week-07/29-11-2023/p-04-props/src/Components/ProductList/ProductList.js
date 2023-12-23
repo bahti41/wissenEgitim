@@ -1,13 +1,12 @@
-import React from 'react'
+﻿import React from 'react';
 import Product from '../Product/Product';
 
 function ProductList({ products }) {
-
   return (
     <>
       {products.forEach(p => {
-        console.log(products)
-        <Product key={p.id} product = {p} />
+        console.log(p);
+        <Product key={p.id} product={p} />
       })}
     </>
   )

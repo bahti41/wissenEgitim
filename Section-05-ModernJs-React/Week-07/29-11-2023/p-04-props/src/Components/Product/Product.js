@@ -1,12 +1,13 @@
-import React from 'react'
+﻿import React from 'react'
 
 function Product({product}) {
+    console.log(product);
   return (
-    <div>
+    <>
         <h1>{product.name}</h1>
-        <p>ürün acıklaması burda</p>
-        <p>diyat</p>
-    </div>
+        <p>Ürün açıklaması burada</p>
+        <p>Fiyat</p>
+    </>
   )
 }
 

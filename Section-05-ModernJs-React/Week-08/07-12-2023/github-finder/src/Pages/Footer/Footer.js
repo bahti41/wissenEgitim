@@ -6,11 +6,11 @@ const Footer = () => {
         <>
             <Alert variant='info'>
                 <Container>
-                    bu uygulama FS-2310-13 sınıfı tarafından geliştirilmiştir
+                    Bu uygulama FS-2310-13 sınıfı tarafından geliştirilmiştir.
                 </Container>
             </Alert>
         </>
     )
 }
 
-export default Footer;
+export default Footer

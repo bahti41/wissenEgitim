@@ -1,25 +1,26 @@
-.Product{
+﻿.Product {
     display: flex;
     flex-direction: column;
     border: 1px solid gray;
     padding: 5px;
 }
 
-.Product img{}
+.Product img {}
 
-.Product h5{
+.Product h5 {
     color: red;
     margin: 0;
     padding: 5px 0;
 }
 
-.Product p{
+.Product p {
     margin: 0;
     padding: 5px 0;
 }
-.Product button{
+
+.Product button {
     cursor: pointer;
-    background-color: rgb(39, 39, 187);
+    background-color: cadetblue;
     border: none;
     border-radius: 5px;
     color: white;

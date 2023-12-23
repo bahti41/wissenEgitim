@@ -1,4 +1,4 @@
-import ProductContainer from "../ProductContainer/ProductContainer";
+﻿import ProductContainer from "../ProductContainer/ProductContainer";
 import "./Content.css";
 
 import React from 'react'
@@ -6,11 +6,10 @@ import React from 'react'
 function Content() {
   return (
     <>
-        <h1 className="Title">hosgeldiniz</h1>
-          <div className="Text-Container">
-            <p className="Text">loremashgcjgasjcsgchjvjhcvjvcjhsvcsjjvcs
-            </p>
-          </div>
+        <h1 className="Title">Hoş geldiniz</h1>
+        <div className="Text-Container">
+              <p className="Text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus ad, aliquid impedit minus illo quibusdam repellat, ipsa harum voluptatum ut corporis nostrum exercitationem maxime nam accusamus numquam voluptas enim in.</p>
+        </div>
         <button className="Btn-Detail" type="button">Detay</button>
         <ProductContainer />
     </>
@@ -38,9 +37,7 @@ export default Content;
 // export class Content extends Component {
 //   render() {
 //     return (
-//       <div>
-//         Content
-//       </div>
+//       <div>Content</div>
 //     )
 //   }
 // }

@@ -2,7 +2,7 @@
 {
     public interface IPerson
     {
-        public string Deparment { get; set; }
+        public string Department { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public void Info();
@@ -12,6 +12,7 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
+
     }
     public interface IEmployee
     {
@@ -19,7 +20,7 @@
     }
     public class Admin : IPerson, IPersonal
     {
-        public string Deparment { get; set; }
+        public string Department { get; set; }
         public string Address { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
@@ -29,6 +30,7 @@
         public void Info()
         {
             Console.WriteLine($"{City}");
+
         }
     }
     public class Guest : IPersonal
@@ -39,7 +41,7 @@
     }
     public class Employee : IPerson, IPersonal, IEmployee
     {
-        public string Deparment { get; set; }
+        public string Department { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public int Id { get; set; }
@@ -49,7 +51,7 @@
 
         public void Info()
         {
-            Console.WriteLine($"{City}-{SubDepartment}");
+            Console.WriteLine($"{City} - {SubDepartment}");
         }
     }
     public class Program
@@ -57,23 +59,19 @@
         static void Main(string[] args)
         {
             Admin admin = new Admin();
-            admin.City = "Kocaeli";
+            admin.City = "İstanbul";
             admin.Info();
+            
 
-
-
-
-            Console.ReadLine();
+            Console.ReadLine(); 
 
             /*
-             * Bir class sadece bir classtab miras alabilir
-             * abstract class yada Interfaceden yeni bir nesne üretilemez.(new yapılamaz)
-             * Bir abstract class icinde hem soyut hem somu memberler bulunabilir.
-             * Dolayısyla bir abstract classa hem soyut hem somu memberlarımız varsa ihtiyac duyarız. eger sadece soyut yapılara ihtiyacımız varsa Interface kullanuırız yani Interfece icerigimiz tüm memberlar soyuttur.!
-             * Eger bir class hem Interface hem de classtan miras alacaksa , önce class ismi yazılmak zorundadır. Sonrasında birden fazla interface yazılarak implemete edilebilir.
+             * Bir class, sadece bir classtan miras alabilir.
+             * Abstract Class ya da Interface'den yeni bir nesne üretilemez.(new yapılamaz)
+             * Bir abstract class içinde hem soyut, hem somut memberlar bulunabilir.
+             * Dolayısıyla bir abstract classa, hem soyut hem de somut memberlarımız varsa ihtiyaç duyarız. Eğer sadece soyut yapılara ihtiyacımız varsa Interface kullanırız. Yani bir Interface içerisindeki tüm memberlar soyuttur!
+             * Eğer bir class hem interface hem de class'tan miras alacaksa, önce class ismi yazılmak zorundadır. Sonrasında birden fazla interface yazılarak implemente edilebilir.
              */
-
-
         }
     }
 }

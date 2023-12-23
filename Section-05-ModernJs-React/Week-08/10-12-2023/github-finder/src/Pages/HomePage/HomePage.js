@@ -10,7 +10,7 @@ const HomePage = () => {
                     <h1 className='display-4 text-primary text-center'>Welcome!</h1>
                     <p className='display-2 text-success text-center'>Github Finder</p>
                 </div>
-
+            
             </Container>
         </>
     )

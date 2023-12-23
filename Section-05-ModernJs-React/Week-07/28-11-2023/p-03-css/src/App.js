@@ -1,9 +1,8 @@
-import { Container, Row, Col, Nav, Image, Button, Card } from "react-bootstrap";
-
 import './App.css';
 import Header from "./Header.js";
+import { Container, Row, Col, Nav, Navbar, Image, Button, Card } from "react-bootstrap";
 import Products from './Products.js';
-import Products from './Product.js';
+
 function App() {
   return (
     <>

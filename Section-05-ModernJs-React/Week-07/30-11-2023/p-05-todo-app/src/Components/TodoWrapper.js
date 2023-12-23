@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import TodoFrom from './TodoFrom';
+import TodoForm from './TodoForm';
 import { v4 as uuidv4 } from 'uuid';
 
 const TodoWrapper = () => {
     let [todos, setTodos] = useState([]);
     const addTodo = todo => {
-        setTodos([...todo, {
+        setTodos([...todos, {
             id: uuidv4(),
             desc: todo,
             completed: false
@@ -15,7 +15,7 @@ const TodoWrapper = () => {
         <>
             <div className='TodoWrapper'>
                 <h1>FS-2310-13 Todo App</h1>
-                <TodoFrom addTodo={addTodo} />
+                <TodoForm addTodo={addTodo} />
             </div>
         </>
     )

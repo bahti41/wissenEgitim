@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchForm from '../../Components/SearchForm';
 import Users from '../../Components/Users';
-import UserDetailsPage from '../../Components/UserDetails';
 
 const SearchPage = () => {
+
     return (
         <>
             <SearchForm />

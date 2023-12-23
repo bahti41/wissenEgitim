@@ -4,6 +4,7 @@ import { TodoContext } from '../Contexts/TodoContext';
 const TodoAddForm = () => {
     const context = useContext(TodoContext);
     const [desc, setDesc] = useState("");
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (desc) {
@@ -11,7 +12,7 @@ const TodoAddForm = () => {
             setDesc("");
             e.target.firstChild.firstChild.focus();
         } else {
-            alert("Lütfen bos bırakmayınız!");
+            alert("Lütfen boş bırakmayınız!");
         }
     }
     return (

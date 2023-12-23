@@ -1,6 +1,6 @@
-.Title{
-    font-size: 50px;
-    color: tomato;
+﻿.Title {
+    font-size:50px;
+    color:tomato;
 }
 .Text-Container{
     display: flex;
@@ -12,8 +12,8 @@
 .Btn-Detail{
     cursor: pointer;
     background-color: green;
-    border: none;
+    border:none;
     border-radius: 5px;
-    color: white;
+    color:white;
     padding: 7px 15px;
 }

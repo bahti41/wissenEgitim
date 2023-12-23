@@ -4,26 +4,26 @@
     {
 
     }
-
     internal class Program
     {
         static void Main(string[] args)
         {
-            /*int number1 = 50;
+            //int number1=50;
 
-            Console.WriteLine(number1);*/
+            //Console.WriteLine(number1);
 
             Random random = new Random();
-            int sayı1 = random.Next();
-            int sayı2;
+            int sayi1 = random.Next();
+            int sayi2;
 
-            sayı2 = 45;
-            Console.WriteLine(sayı1);
+            sayi2 = 45;
+            Console.WriteLine(sayi1);
 
             Product urun1 = new Product();
             Product urun2 = new Product();
             Product urun3;
-
+  
+            urun3 = new Product();
             Console.ReadLine();
         }
     }

@@ -1,14 +1,12 @@
 import React from 'react'
 import Todo from './Todo'
-
 const TodoContainer = ({ todos, toggleComplete, deleteTask }) => {
     return (
         <>
             <div className='TodoContainer'>
-
                 {
                     todos.map((todo) => {
-                        return < Todo
+                        return <Todo
                             key={todo.id}
                             task={todo}
                             toggleComplete={toggleComplete}
@@ -16,7 +14,6 @@ const TodoContainer = ({ todos, toggleComplete, deleteTask }) => {
                         />
                     })
                 }
-
             </div>
         </>
     )

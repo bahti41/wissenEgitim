@@ -11,8 +11,7 @@ const User = ({ user }) => {
     const smCol = context.user.login ? 12 : 6;
     return (
         <>
-
-            <Col lg={lgCol} md={mdCol} ms={smCol} className='mb-2'>
+            <Col lg={lgCol} md={mdCol} sm={smCol} className='mb-2'>
                 <Card>
                     <Card.Img src={user.avatar_url} />
                     <Card.Body>
@@ -26,7 +25,6 @@ const User = ({ user }) => {
                     </Card.Body>
                 </Card>
             </Col>
-
         </>
     )
 }
