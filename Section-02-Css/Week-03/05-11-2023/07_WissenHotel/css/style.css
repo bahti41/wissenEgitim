@@ -365,12 +365,14 @@ footer p {
         display: flex;
         flex-direction: column;
     }
+
     .menu {
         width: 50%;
         height: 50%;
-        font-size:9px;
+        font-size: 9px;
     }
-    .menu ul{
-        padding-top:0;
+
+    .menu ul {
+        padding-top: 0;
     }
 }

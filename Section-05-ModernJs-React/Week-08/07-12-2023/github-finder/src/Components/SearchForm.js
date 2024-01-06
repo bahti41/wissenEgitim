@@ -2,9 +2,9 @@ import React from 'react'
 import { Container, Form, InputGroup, Button } from 'react-bootstrap'
 
 const SearchForm = () => {
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
+
     }
     return (
         <>
