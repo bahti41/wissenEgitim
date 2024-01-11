@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
-using Microsoft.Data.SqlClient;
 using Proje06_MvcWithSql.Dal;
-using Microsoft.Data;
 using Proje06_MvcWithSql.ViewModels;
 
 namespace Proje06_MvcWithSql.ViewComponents
@@ -14,9 +12,9 @@ namespace Proje06_MvcWithSql.ViewComponents
         {
             Db.OpenCn();
             string queryString = @"select 
-	                        c.CategoryID as Id,
-	                        c.CategoryName as Name
-                        from Categories c";
+	                                c.CategoryID as Id,
+	                                c.CategoryName as Name
+                                from Categories c";
 
             SqlCommand cmd = new SqlCommand(queryString, Db.connection);
             SqlDataReader reader = cmd.ExecuteReader();

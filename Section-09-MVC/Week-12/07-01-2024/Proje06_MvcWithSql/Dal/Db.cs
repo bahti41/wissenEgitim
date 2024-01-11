@@ -14,7 +14,7 @@ namespace Proje06_MvcWithSql.Dal
         public static SqlConnection connection = CreateConnection();
         private static SqlConnection CreateConnection()
         {
-            string connectionString = @"Server=DESKTOP-HD4I80E\SQLEXPRESS;Database=Northwind;user=sa; password=1234;TrustServerCertificate=true";
+            string connectionString = @"Server=DESKTOP-LHV5FJ2\SQLEXPRESS;Database=Northwind;user=sa; password=1234;TrustServerCertificate=true";
             return new SqlConnection(connectionString);
         }
         public static void OpenCn()

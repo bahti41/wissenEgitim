@@ -45,7 +45,6 @@ namespace Proje06_MvcWithSql.Controllers
             }
             Db.CloseCn();
 
-          
             return View(products);
         }
     }

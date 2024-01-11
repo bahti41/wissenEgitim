@@ -41,8 +41,7 @@ public class HomeController : Controller
             products.Add(productViewModel);
         }
         Db.CloseCn();
-        
-        
+       
         
         return View(products);
     }
