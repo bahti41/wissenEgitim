@@ -1,7 +1,6 @@
 ﻿using MiniShop.Business.Abstract;
 using MiniShop.Core.ViewModels;
 using MiniShop.Data.Abstract;
-using MiniShop.Data.Concrete;
 using MiniShop.Entity;
 using System;
 using System.Collections.Generic;
@@ -51,7 +50,8 @@ namespace MiniShop.Business.Concrete
                 {
                     products = _productRepository.GetDeletedProducts(isDelete);
                 }
-               
+                
+
             }else 
             {
                  products = _productRepository.GetHomePageProducts(isHome);
@@ -68,6 +68,22 @@ namespace MiniShop.Business.Concrete
                 }).ToList();
             return productViewModels;
         }
+
+        //List<ProductViewModel> productViewModels = new List<ProductViewModel>();
+        //ProductViewModel productViewModel;
+        //foreach (var product in products)
+        //{
+        //    productViewModel = new ProductViewModel
+        //    {
+        //        Id = product.Id,
+        //        Name = product.Name,
+        //        Price = product.Price,
+        //        ImageUrl = product.ImageUrl,
+        //        Properties = product.Properties,
+        //        Url = product.Url
+        //    };
+        //    productViewModels.Add(productViewModel);
+        //}
         public ProductViewModel GetById(int id)
         {
             Product product = _productRepository.GetById(id);
@@ -86,13 +102,12 @@ namespace MiniShop.Business.Concrete
 
         public void HardDelete(int id)
         {
-            Product deletedProduct =_productRepository.GetById(id);
+            Product deletedProduct = _productRepository.GetById(id);
             _productRepository.HardDelete(deletedProduct);
         }
 
         public void SoftDelete(int id)
         {
-
             Product deletedProduct = _productRepository.GetById(id);
             deletedProduct.IsDelete = !deletedProduct.IsDelete;
             _productRepository.SoftDelete(deletedProduct);
@@ -100,13 +115,13 @@ namespace MiniShop.Business.Concrete
 
         public void Update(ProductViewModel model)
         {
-            Product  editedProduct = _productRepository.GetById(model.Id);
-            editedProduct.Name = model.Name;
-            editedProduct.Price = model.Price;
-            editedProduct.Url = model.Url;
-            editedProduct.ImageUrl = model.ImageUrl;
+            Product editedProduct = _productRepository.GetById(model.Id);
+            editedProduct.Name=model.Name;
+            editedProduct.Price=model.Price;
+            editedProduct.Url=model.Url;
+            editedProduct.ImageUrl=model.ImageUrl;
             editedProduct.Properties = model.Properties;
-            editedProduct.IsHome = model.IsHome;
+            editedProduct.IsHome=model.IsHome; 
             _productRepository.Update(editedProduct);
         }
     }

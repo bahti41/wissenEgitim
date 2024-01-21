@@ -14,21 +14,19 @@
                     </small>
                 </p>
             </div>
-        </div>
-        <div class="me-3 d-grid">
-            <a 
-                asp-area="Admin"
-                asp-controller="Product"
-                asp-action="HardDelete"
-                asp-route-id="@Model.Id"
-                class="btn btn-danger">Kalıcı Olarak Kaldır</a>
-        </div>
-        <div class="me-3 d-grid">
-            <a asp-area="Admin"
-               asp-controller="Product"
-               asp-action="SoftDelete"
-               asp-route-id="@Model.Id"
-               class="btn btn-success">Cöpe Gönderl</a>
+            <div class="me-3 float-end">
+                    <a asp-area="Admin"
+                       asp-controller="Product"
+                       asp-action="SoftDelete"
+                       asp-route-id="@Model.Id"
+                       class="btn btn-warning">Çöpe Gönder</a>
+                    <a 
+                    asp-area="Admin"
+                    asp-controller="Product"
+                    asp-action="HardDelete"
+                    asp-route-id="@Model.Id"
+                    class="btn btn-danger">Kalıcı Olarak Sil</a>
+            </div>
         </div>
     </div>
 </div>

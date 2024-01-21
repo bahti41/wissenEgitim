@@ -21,7 +21,7 @@ namespace MiniShop.Mvc.Areas.Admin.Controllers
             return View(products);
         }
 
-        [HttpGet] // default
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -60,9 +60,10 @@ namespace MiniShop.Mvc.Areas.Admin.Controllers
             _productManager.HardDelete(id);
             return RedirectToAction("Index");
         }
-        public IActionResult SoftHardDelete(int id)
+
+        public IActionResult SoftDelete(int id)
         {
-            _productManager.HardDelete(id);
+            _productManager.SoftDelete(id);
             return RedirectToAction("Index");
         }
     }

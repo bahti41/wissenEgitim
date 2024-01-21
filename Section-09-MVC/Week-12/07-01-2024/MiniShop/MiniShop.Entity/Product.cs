@@ -9,7 +9,7 @@ namespace MiniShop.Entity
     public class Product
     {
         public int Id { get; set; }
-        public DateTime CreateDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
@@ -19,5 +19,7 @@ namespace MiniShop.Entity
         public decimal Price { get; set; }
         public bool IsHome { get; set; }
         public string ImageUrl { get; set; }
+
+
     }
 }

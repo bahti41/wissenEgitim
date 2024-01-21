@@ -104,7 +104,8 @@ namespace MiniShop.Data.Config
                     Url = "arcelik-camasir-makinesi-a-4",
                     ImageUrl = "8.png",
                     IsHome = false
-                }, new Product
+                },
+                new Product
                 {
                     Id = 9,
                     Name = "Hoop Dijital Radyo X96",

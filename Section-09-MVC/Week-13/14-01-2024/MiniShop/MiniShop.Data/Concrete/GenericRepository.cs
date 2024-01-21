@@ -18,8 +18,8 @@ namespace MiniShop.Data.Concrete
         }
         public void Create(TEntity entity)
         {
-           _dbContext.Set<TEntity>().Add(entity);
-           _dbContext.SaveChanges();
+            _dbContext.Set<TEntity>().Add(entity);
+            _dbContext.SaveChanges();
         }
 
         public List<TEntity> GetAll()
@@ -42,8 +42,7 @@ namespace MiniShop.Data.Concrete
 
         public void SoftDelete(TEntity entity)
         {
-            _dbContext.Set<TEntity>().Update(entity);
-            _dbContext.SaveChanges();
+            Update(entity);
         }
 
         public void Update(TEntity entity)
