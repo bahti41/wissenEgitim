@@ -46,8 +46,6 @@ namespace MiniShop.Business.Concrete
             return Response<List<CategoryDTO>>.Success(categoryDtoList, 200);
         }
 
-
-
         public async Task<Response<List<CategoryDTO>>> GetAllCategoriesWithProductsAsync()
         {
             var categoryList = await _repository.GetAllCategoriesWithProductsAsync();
@@ -69,12 +67,25 @@ namespace MiniShop.Business.Concrete
             return Response<CategoryDTO>.Success(categoryDto, 200);
         }
 
-        public async Task<Response<List<CategoryDTO>>> GetNonDeletedCategories()
+        public async Task<Response<List<CategoryDTO>>> GetIsActiveCategories(bool isActive = true)
         {
-            var categoryList = await _repository.GetAllAsyncNew(c=>!c.IsDeleted);
+            var categoryList = await _repository.GetAllAsync(c => c.IsActive == isActive);
+            string status = isActive ? "aktif" : "aktif olmayan";
             if (categoryList == null)
             {
-                return Response<List<CategoryDTO>>.Fail("Hiç kategori bulunamadı", 301);
+                return Response<List<CategoryDTO>>.Fail($"Hiç {status} kategori bulunamadı", 301);
+            }
+            var categoryDtoList = _mapper.Map<List<CategoryDTO>>(categoryList);
+            return Response<List<CategoryDTO>>.Success(categoryDtoList, 200);
+        }
+
+        public async Task<Response<List<CategoryDTO>>> GetIsDeletedCategories(bool isDeleted = false)
+        {
+            var categoryList = await _repository.GetAllAsync(c=>c.IsDeleted == isDeleted);
+            string status = isDeleted ? "silinmiş" : "silinmemiş";
+            if (categoryList == null)
+            {
+                return Response<List<CategoryDTO>>.Fail($"Hiç {status} kategori bulunamadı", 301);
             }
             var categoryDtoList = _mapper.Map<List<CategoryDTO>>(categoryList);
             return Response<List<CategoryDTO>>.Success(categoryDtoList, 200);
@@ -103,6 +114,7 @@ namespace MiniShop.Business.Concrete
                 return Response<NoContent>.Fail("Bu kategori zaten silinmiş!", 404);
             }
             deletedCategory.IsDeleted = true;
+            deletedCategory.IsActive = false;
             deletedCategory.ModifiedDate = DateTime.Now;
             await _repository.UpdateAsync(deletedCategory);
             return Response<NoContent>.Success(200);

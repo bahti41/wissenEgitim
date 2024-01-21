@@ -4,10 +4,14 @@ using MiniShop.Business.Concrete;
 using MiniShop.Data.Abstract;
 using MiniShop.Data.Concrete.Contexts;
 using MiniShop.Data.Concrete.Repositories;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options=>
+        options.JsonSerializerOptions.ReferenceHandler=ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddDbContext<MiniShopDbContext>(options=>
     options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection"))
@@ -16,8 +20,10 @@ builder.Services.AddDbContext<MiniShopDbContext>(options=>
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<IProductService, ProductManager>();
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 
 

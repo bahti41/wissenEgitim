@@ -16,14 +16,18 @@ namespace MiniShop.Business.Mappings
             CreateMap<Category, AddCategoryDTO>().ReverseMap();
             CreateMap<Category, EditCategoryDTO>().ReverseMap();
 
-            CreateMap<Product, ProductDTO>().ReverseMap();
+            CreateMap<Product, AddProductDTO>().ReverseMap();
+            CreateMap<Product, EditProductDTO>().ReverseMap();
+
+            CreateMap<Product, ProductDTO>()
+                //.ForMember(pdto=>pdto.CategoryList, options=>
+                //    options.MapFrom(p=>p.ProductCategories.Select(pc=>pc.Category)))
+                .ReverseMap();
 
             CreateMap<Category, CategoryDTO>()
                 .ForMember(cdto=>cdto.ProductList, options=>
                     options.MapFrom(c=>c.ProductCategories.Select(pc=>pc.Product)))
                 .ReverseMap();
-
-           
         }
     }
 }
