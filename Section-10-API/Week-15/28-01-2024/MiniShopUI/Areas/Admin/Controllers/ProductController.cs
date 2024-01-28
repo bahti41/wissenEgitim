@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MiniShop.MVC.Areas.Admin.Models;
+using MiniShop.MVC.Helpers;
 using System.Text;
 using System.Text.Json;
 
@@ -48,8 +49,9 @@ namespace MiniShop.MVC.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-        [HttpGet]
-        public async Task<IActionResult> Create()
+
+        [NonAction]
+        public async Task<List<CategoryViewModel>> GetCategoriesAsync()
         {
             Response<List<CategoryViewModel>> response = new Response<List<CategoryViewModel>>();
             using (HttpClient httpClient = new HttpClient())
@@ -58,9 +60,15 @@ namespace MiniShop.MVC.Areas.Admin.Controllers
                 string contentResponseApi = await responseApi.Content.ReadAsStringAsync();
                 response = JsonSerializer.Deserialize<Response<List<CategoryViewModel>>>(contentResponseApi);
             }
+            return response.Data;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
             AddProductViewModel model = new AddProductViewModel
             {
-                Categories = response.Data
+                Categories = await GetCategoriesAsync()
             };
             return View(model);
         }
@@ -68,7 +76,96 @@ namespace MiniShop.MVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(AddProductViewModel model)
         {
-            return View();
+            model.Properties = "Geçici olarak otomatik metin üretiliyor.";
+            model.Url = Jobs.GetUrl(model.Name);
+            if(ModelState.IsValid && model.CategoryIds.Count>0)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var serializeModel = JsonSerializer.Serialize(model);
+                    StringContent stringContent = new StringContent(serializeModel, Encoding.UTF8, "application/json");
+                    var result = await httpClient.PostAsync("http://localhost:7700/Products/Create", stringContent);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            ViewBag.CategoryErrorMessage = model.CategoryIds.Count == 0 ? "Herhangi bir kategori seçmeden, ürün kaydı yapılamaz" : null;
+            model.Categories= await GetCategoriesAsync();
+            return View(model);
+        }
+
+        [NonAction]
+        public async Task<ProductViewModel> GetProductAsync(int id)
+        {
+            Response<ProductViewModel> response = new Response<ProductViewModel>();
+            using (HttpClient httpClient = new HttpClient())
+            {
+                HttpResponseMessage responseApi = await httpClient.GetAsync($"http://localhost:7700/Products/GetWithCategories/{id}");
+                string contentResponseApi = await responseApi.Content.ReadAsStringAsync();
+                response = JsonSerializer.Deserialize<Response<ProductViewModel>>(contentResponseApi);
+            }
+            return response.Data;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            ProductViewModel productViewModel = await GetProductAsync(id);
+            EditProductViewModel model = new EditProductViewModel
+            {
+                Id = productViewModel.Id,
+                Name = productViewModel.Name,
+                ImageUrl = productViewModel.ImageUrl,
+                IsActive = productViewModel.IsActive,
+                IsHome = productViewModel.IsHome,
+                Price = productViewModel.Price,
+                Properties = productViewModel.Properties,
+                Url = productViewModel.Url,
+                CategoryIds= productViewModel.Categories.Select(c=>c.Id).ToList(),
+                Categories= await GetCategoriesAsync()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditProductViewModel model)
+        {
+            model.Properties = "Geçici olarak otomatik metin üretiliyor.";
+            model.Url = Jobs.GetUrl(model.Name);
+            if (ModelState.IsValid && model.CategoryIds.Count > 0)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var serializeModel = JsonSerializer.Serialize(model);
+                    StringContent stringContent = new StringContent(serializeModel, Encoding.UTF8, "application/json");
+                    var result = await httpClient.PutAsync("http://localhost:7700/Products/Update", stringContent);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            ViewBag.CategoryErrorMessage = model.CategoryIds.Count == 0 ? "Herhangi bir kategori seçmeden, ürün kaydı yapılamaz" : null;
+            model.Categories = await GetCategoriesAsync();
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            ProductViewModel productViewModel = await GetProductAsync(id);
+            DeleteProductViewModel model = new DeleteProductViewModel
+            {
+                Id = productViewModel.Id,
+                Name = productViewModel.Name,
+                Price = productViewModel.Price,
+                CreatedDate = productViewModel.CreatedDate,
+                ModifiedDate = productViewModel.ModifiedDate,
+                IsDeleted = productViewModel.IsDeleted,
+            };
+            return View(model);
         }
     }
 }
