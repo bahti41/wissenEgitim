@@ -35,7 +35,7 @@
                                         <th>Fiyat</th>
                                         <th>Ana Sayfa</th>
                                         <th>Aktif</th>
-                                        <th>İşlemler</th>
+                                        <th width="55">#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,7 +43,13 @@
                                     {
                                         <tr>
                                             <td>@p.Id</td>
-                                            <td>@p.Name</td>
+                                            <td>
+                                                <a asp-area="Admin"
+                                                   asp-controller="Product"
+                                                   asp-action="Edit"
+                                                   asp-route-id="@p.Id"
+                                                   class="btn btn-link">@p.Name</a>
+                                            </td>
                                             <td>@p.Price</td>
                                             <td>
                                                 <form 
@@ -82,7 +88,18 @@
                                                 </form>
 
                                             </td>
-                                            <td>#</td>
+                                            <td class="text-center">
+                                                <a asp-area="Admin"
+                                                   asp-controller="Product"
+                                                   asp-action="Edit"
+                                                   asp-route-id="@p.Id"
+                                                   class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
+                                                <a asp-area="Admin"
+                                                   asp-controller="Product"
+                                                   asp-action="Delete"
+                                                   asp-route-id="@p.Id"
+                                                   class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                            </td>
                                         </tr>
                                     }
 

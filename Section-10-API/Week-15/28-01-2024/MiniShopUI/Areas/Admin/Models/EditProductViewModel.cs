@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace MiniShop.MVC.Areas.Admin.Models
 {
-    public class AddProductViewModel
+    public class EditProductViewModel
     {
+        public int Id { get; set; }
 
         [JsonPropertyName("Name")]
         [DisplayName("Ürün")]
@@ -50,7 +51,7 @@ namespace MiniShop.MVC.Areas.Admin.Models
 
 
         [JsonPropertyName("CategoryIds")]
-        public List<int> CategoryIds { get; set; } = new List<int>();
+        public List<int> CategoryIds { get; set; } 
 
 
         [DisplayName("Kategoriler")]
