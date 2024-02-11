@@ -14,7 +14,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace MiniShop.UI.Areas.Admin.Controllers
 {
-
+    
     [Area("Admin")]
     public class ProductController : Controller
     {
@@ -60,6 +60,7 @@ namespace MiniShop.UI.Areas.Admin.Controllers
             };
             return View(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Create(AddProductViewModel model, IFormFile image)
