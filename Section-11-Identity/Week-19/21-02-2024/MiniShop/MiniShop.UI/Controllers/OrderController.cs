@@ -64,8 +64,8 @@ namespace MiniShop.UI.Controllers
 
             //YApılacak ödeme isteğinin authorization seçenekleri için nesne yaratılıyor
             Options options = new Options();
-            options.ApiKey = "sandbox-313Mg6w05g35vEZZXgG5dL5YW6LiUGJl";
-            options.SecretKey = "sandbox-tkue5CZOz5usUARA3DmXPQAVnbJkcXx5";
+            options.ApiKey = "sandbox-XvKGn5YZL3RBSIm2ZgaZ2v988NLz0zdy";
+            options.SecretKey = "sandbox-32WESjR06SUd8LEPW5lS6xHx52Sx1EdY";
             options.BaseUrl = "https://sandbox-api.iyzipay.com";
 
             //Yapılacak ödeme isteği için nesne yaratılıyor
