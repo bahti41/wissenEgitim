@@ -40,12 +40,12 @@ namespace MiniShop.UI.Areas.Admin.Controllers
             };
             return View(model);
         }
-
+       
         public async Task<IActionResult> FilterByProduct(int id)
         {
             var orders = await _orderManager.GetOrdersAsync(id);
 
             return PartialView("_OrderListPartial",orders);
         }
-    }   
+    }
 }

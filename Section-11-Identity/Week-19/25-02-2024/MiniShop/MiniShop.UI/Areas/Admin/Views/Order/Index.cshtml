@@ -10,9 +10,7 @@
                 </div>
                 <div class="col-sm-6 d-flex align-items-center justify-content-end">
                     <label class="mr-3 pt-2">Ürüne Göre Siparişler:</label>
-                    <select
-                        onchange="filterByProduct(this)"
-                        asp-items="Model.ProductListItems" class="form-control w-50">
+                    <select onchange="filterByProduct(this)" asp-items="Model.ProductListItems" class="form-control w-50">
                         <option>Seçiniz</option>
                     </select>
                 </div>
@@ -42,7 +40,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @await Html.PartialAsync("_OrderListPartial",Model.Orders)
+                                    @await Html.PartialAsync("_OrderListPartial", Model.Orders)
                                 </tbody>
                             </table>
                         </div>
@@ -64,20 +62,23 @@
         const filterByProduct = (element) => {
             const tBody = $("tbody");
             $.ajax({
-                url: `/Admin/Order/FilterByProduct/${element.value}`,
+                url:`/Admin/Order/FilterByProduct/${element.value}`,
                 type: 'GET',
-                success: (response) => {
+                success: (response)=>{
                     tBody.html(response);
                 },
                 error: (err) => {
                     console.log(err);
                 }
+
             });
         }
     </script>
-
 }
 
 @section Scripts {
     @await Html.PartialAsync("_DataTablesJsPartial")
 }
+
+
+
