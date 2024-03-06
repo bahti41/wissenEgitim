@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MiniShop.Business.Abstract;
 using MiniShop.Data.Abstract;
 using MiniShop.Entity.Concrete;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MiniShop.Business.Concrete
 {
-    public class MessageManager : IMessagaService
+    public class MessageManager : IMessageService
     {
         private readonly IMapper _mapper;
         private readonly IMessageRepository _repository;
@@ -29,30 +30,61 @@ namespace MiniShop.Business.Concrete
             var createdMessage = await _repository.CreateAsync(message);
             if (createdMessage == null)
             {
-                return Response<MessageDetailsViewModel>.Fail("Kategori oluşturulamadı");
+                return Response<MessageDetailsViewModel>.Fail("Mesaj gönderilemedi");
             }
-            var createdMessageViewModel = _mapper.Map<MessageDetailsViewModel>(createdMessage);
-            return Response<MessageDetailsViewModel>.Success(createdMessageViewModel);
+            var createdMessageDetailsViewModel = _mapper.Map<MessageDetailsViewModel>(createdMessage);
+            return Response<MessageDetailsViewModel>.Success(createdMessageDetailsViewModel);
         }
 
-        public Task<Response<List<MessageDetailsViewModel>>> GetAllAsync(string userId, bool isRead = true)
+        public async Task<Response<List<MessageDetailsViewModel>>> GetAllReceivedMessageAsync(string userId, bool isRead = false)
         {
-            throw new NotImplementedException();
+            var messageList = await _repository.GetAllAsync(x => x.FromId == userId && x.IsRead==isRead);
+            if (messageList.Count == 0)
+            {
+                var infoText = isRead ? "Okunmuş" : "Okunmamış";
+                return Response<List<MessageDetailsViewModel>>.Fail($"{infoText} mesajınız bulunmamaktadır.");
+            }
+            var messageViewModelList = _mapper.Map<List<MessageDetailsViewModel>>(messageList);
+            return Response<List<MessageDetailsViewModel>>.Success(messageViewModelList);
         }
 
-        public Task<Response<MessageDetailsViewModel>> GetByIdAsync(int id)
+        public async Task<Response<List<MessageDetailsViewModel>>> GetAllSentMessageAsync(string userId)
         {
-            throw new NotImplementedException();
+            var messageList = await _repository.GetAllAsync(x=>x.FromId==userId);
+            if (messageList.Count == 0)
+            {
+                return Response<List<MessageDetailsViewModel>>.Fail("Giden kutusu boş");
+            }
+            var messageViewModelList = _mapper.Map<List<MessageDetailsViewModel>>(messageList);
+            return Response<List<MessageDetailsViewModel>>.Success(messageViewModelList);
         }
 
-        public Task<Response<int>> GetMessageCount(string userId, bool isRead = false)
+        public async Task<Response<MessageDetailsViewModel>> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var message = await _repository.GetByIdAsync(x => x.Id == id);
+            if (message == null)
+            {
+                return Response<MessageDetailsViewModel>.Fail("Mesaj açılamadı");
+            }
+            var messageDetailsViewModel = _mapper.Map<MessageDetailsViewModel>(message);
+            return Response<MessageDetailsViewModel>.Success(messageDetailsViewModel);
         }
 
-        public Task<Response<NoContent>> HardDeleteAsync(int id)
+        public async Task<Response<int>> GetMessageCount(string userId, bool isRead = false)
         {
-            throw new NotImplementedException();
+            var count = await _repository.GetCount(x => x.FromId==userId && x.IsRead==isRead);
+            return Response<int>.Success(count);
+        }
+
+        public async Task<Response<NoContent>> HardDeleteAsync(int id)
+        {
+            var message = await _repository.GetByIdAsync(x => x.Id == id);
+            if (message == null)
+            {
+                return Response<NoContent>.Fail("Silinecek mesaj bulunamadı");
+            }
+            await _repository.HardDeleteAsync(message);
+            return Response<NoContent>.Success();
         }
     }
 }
