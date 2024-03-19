@@ -1,39 +1,25 @@
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import { Button, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Home from './src/screens/Home'
+import Login from './src/screens/Login'
+
+const Stack = createNativeStackNavigator()
 
 const App = () => {
 
-    const [products, setProducts] = useState([])
-
-    useEffect(() => {
-        getData()
-    }, [])
-
-    const getData = () => {
-        try {
-            axios.get("https://dummyjson.com/products").then(res => setProducts(res.data.products))
-        } catch (error) {
-            console.log('Get Product', error)
-        }
-    }
-
-    console.log(products)
 
     return (
-        <View>
-            <Button title='Get Product' onPress={getData} color={'red'} />
-            <FlatList
-                data={products}
-                renderItem={({ item }) => <Text> {item.title} </Text>}
-            />
-        </View>
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
+                <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
 }
 
 export default App
 
 const styles = StyleSheet.create({})
-
-
-// react native element yüklenecek
