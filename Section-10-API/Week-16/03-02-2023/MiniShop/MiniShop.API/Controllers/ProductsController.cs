@@ -41,11 +41,6 @@ namespace MiniShop.API.Controllers
         public async Task<IActionResult> GetAllWithCategories()
         {
             var response = await _productManager.GetAllProductsWithCategoriesAsync();
-            //var options = new JsonSerializerOptions
-            //{
-            //    ReferenceHandler = ReferenceHandler.IgnoreCycles
-            //};
-            //var jsonResponse = JsonSerializer.Serialize(response, options);
             var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
@@ -138,6 +133,7 @@ namespace MiniShop.API.Controllers
             var jsonResponse = JsonSerializer.Serialize(response);
             return Ok(jsonResponse);
         }
+
         [HttpGet("Count")]
         public async Task<IActionResult> GetCount()
         {
